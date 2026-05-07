@@ -8,6 +8,7 @@ class UserCreate(BaseModel):
     email: EmailStr
     age: int
     password: str
+    phone: str | None = None
 
 
 class UserResponse(BaseModel):
@@ -16,5 +17,6 @@ class UserResponse(BaseModel):
     email: EmailStr
     age: int
     created_at: datetime
+    phone: str | None = None
 
     model_config = ConfigDict(from_attributes=True)

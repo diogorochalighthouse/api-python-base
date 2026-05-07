@@ -24,6 +24,11 @@ class UserModel(Base):
         index=True,
     )
 
+    phone: Mapped[str | None] = mapped_column(
+        String,
+        nullable=True,
+    )
+
     age: Mapped[int] = mapped_column(Integer)
 
     password: Mapped[str] = mapped_column(String)

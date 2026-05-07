@@ -6,13 +6,16 @@ from sqlalchemy import engine_from_config, pool
 from app.core.config import settings
 from app.db.base import Base
 from app.db.model import user_model  # noqa: F401
+from app.db.model import product_model  # noqa: F401
 
 config = context.config
 
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-sync_database_url = settings.DATABASE_URL.replace("postgresql+asyncpg", "postgresql+psycopg2")
+sync_database_url = settings.DATABASE_URL.replace(
+    "postgresql+asyncpg", "postgresql+psycopg2"
+)
 config.set_main_option("sqlalchemy.url", sync_database_url)
 
 target_metadata = Base.metadata
