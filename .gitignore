@@ -8,6 +8,7 @@ wheels/
 
 # Virtual environments
 .venv
+venv/
 
 # Environment variables
 .env
@@ -15,3 +16,12 @@ wheels/
 .env.development.local
 .env.test.local
 .env.production.local
+
+# Tool caches
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# Editor/IDE local settings
+.vscode/
+.idea/
