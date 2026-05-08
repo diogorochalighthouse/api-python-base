@@ -2,7 +2,7 @@ from typing import Any
 
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.db.model.product_model import ProductModel
+from app.modules.products.model import ProductModel
 
 
 class ProductRepository:

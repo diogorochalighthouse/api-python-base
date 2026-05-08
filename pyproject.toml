@@ -36,6 +36,7 @@ profile = "black"
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
+pythonpath = ["."]
 
 [tool.mypy]
 python_version = "3.12"
@@ -45,6 +46,7 @@ strict = true
 [dependency-groups]
 dev = [
     "black>=26.3.1",
+    "httpx>=0.28.1",
     "isort>=8.0.1",
     "mypy>=2.0.0",
     "pytest>=9.0.3",

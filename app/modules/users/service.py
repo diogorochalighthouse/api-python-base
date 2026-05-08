@@ -1,9 +1,9 @@
 from fastapi import HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.db.model.user_model import UserModel
-from app.repositories.user.user_repository import UserRepository
-from app.schemas.user.user_schema import UserCreate
+from app.modules.users.model import UserModel
+from app.modules.users.repository import UserRepository
+from app.modules.users.schemas import UserCreate
 
 
 class UserService:
@@ -12,10 +12,8 @@ class UserService:
 
     async def create_user(self, user: UserCreate) -> UserModel:
         user_exists = await self.user_repository.get_by_email(user.email)
-
         if user_exists:
             raise HTTPException(status_code=400, detail="User already exists")
-
         return await self.user_repository.create(user.model_dump())
 
     async def list_users(self) -> list[UserModel]:

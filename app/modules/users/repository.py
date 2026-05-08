@@ -3,7 +3,7 @@ from typing import Any
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.db.model.user_model import UserModel
+from app.modules.users.model import UserModel
 
 
 class UserRepository:
@@ -12,11 +12,9 @@ class UserRepository:
 
     async def create(self, user_data: dict[str, Any]) -> UserModel:
         user = UserModel(**user_data)
-
         self.db.add(user)
         await self.db.commit()
         await self.db.refresh(user)
-
         return user
 
     async def get_by_email(self, email: str) -> UserModel | None:
@@ -28,9 +26,6 @@ class UserRepository:
         return result.scalar_one_or_none()
 
     async def list_users(self) -> list[UserModel]:
-        query = select(UserModel).where(
-            UserModel.deleted.is_(False),
-        )
-
+        query = select(UserModel).where(UserModel.deleted.is_(False))
         result = await self.db.execute(query)
         return list(result.scalars().all())

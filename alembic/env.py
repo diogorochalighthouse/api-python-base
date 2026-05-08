@@ -5,8 +5,8 @@ from sqlalchemy import engine_from_config, pool
 
 from app.core.config import settings
 from app.db.base import Base
-from app.db.model import user_model  # noqa: F401
-from app.db.model import product_model  # noqa: F401
+from app.modules.products import model as products_model  # noqa: F401
+from app.modules.users import model as users_model  # noqa: F401
 
 config = context.config
 
@@ -44,7 +44,10 @@ def run_migrations_online() -> None:
     )
 
     with connectable.connect() as connection:
-        context.configure(connection=connection, target_metadata=target_metadata)
+        context.configure(
+            connection=connection,
+            target_metadata=target_metadata,
+        )
 
         with context.begin_transaction():
             context.run_migrations()

@@ -1,8 +1,8 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.db.model.product_model import ProductModel
-from app.repositories.product.product_repository import ProductRepository
-from app.schemas.product.product_schema import ProductCreate
+from app.modules.products.model import ProductModel
+from app.modules.products.repository import ProductRepository
+from app.modules.products.schemas import ProductCreate
 
 
 class ProductService:
